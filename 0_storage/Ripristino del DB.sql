@@ -1,6 +1,8 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+DROP DATABASE IF EXISTS `f1`;
+
 CREATE DATABASE IF NOT EXISTS `f1` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 USE `f1`;
 
@@ -24,10 +26,12 @@ CREATE TABLE IF NOT EXISTS `pilota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `punti` (
+  `cod_punti` int(11) NOT NULL AUTO_INCREMENT,
   `pilota` int(11) NOT NULL,
   `circuito` int(11) NOT NULL,
-  `data` date NOT NULL,
+  `data` VARCHAR(10) NOT NULL,
   `punti` int(11) NOT NULL,
+  UNIQUE KEY `cod_punti` (`cod_punti`),
   PRIMARY KEY (`pilota`,`circuito`,`data`),
   KEY `punti` (`punti`),
   KEY `circuito` (`circuito`)

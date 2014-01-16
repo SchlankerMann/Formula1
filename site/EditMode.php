@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
 	<head>
-		<meta name="description" content="Esercizio in php della F1">
-		<meta name="author" content="Martina Ghisolfo">
+		<meta name="description" content="Esercizio in php, per l'elaborazione e la gestione di un Database gestionale delle corse di Formula 1">
+		<meta name="author" content="Canale Davide">
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="../style/base.css">
 	</head>
