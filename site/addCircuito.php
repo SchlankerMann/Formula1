@@ -20,26 +20,40 @@
 			}
 		?>
 		
-		<p id="title">Formula 1</p>
+		<p style="float: left;"><a href=".."><<-BACK</a></p>
+
 		<form action="#" method="get">
-			Nome Circuito: <input type="text" name="nome"><br><br>
-			<input type="submit" value="Aggiungi">
+			<table border="1">
+				<tr>
+					<th colspan="2"><p id="title">Formula 1 - Aggiunta circuito</p></th>
+				</tr>
+				<tr>
+					<td>Nome Circuito: </td>
+					<td><input type="text" name="nome"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Aggiungi"></td>
+				</tr>
+			</table> 
 		</form>
 		
-		<?php 
+		<br><br><br>
+		
+		<?php 				
 			$con=mysqli_connect("127.0.0.1","root","","f1");
 			if (mysqli_connect_errno())
 			  {
 			  echo "Connessione Fallita: " . mysqli_connect_error();
 			  }
-
+			
 			$result = mysqli_query($con,"SELECT * FROM circuito ORDER BY cod_circuito");
 			
-			echo "<br><br><br><h4>Codice|Nome</h4>";
+			echo "<table  border='1'><tr><th>Codice</th><th>Nome</th></tr>";
 			while($row = mysqli_fetch_array($result))
 			  {
-			  echo "<br>".$row['cod_circuito']."|".$row['nome'];
+			  echo "<tr><td>".$row['cod_circuito']."</td><td>".$row['nome']."</td>";
 			  }
+			echo "</table>";
 
 			mysqli_close($con);
 		?>

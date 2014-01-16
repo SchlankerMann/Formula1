@@ -20,11 +20,24 @@
 			}
 		?>
 		
-		<p id="title">Formula 1</p>
+		<p style="float: left;"><a href=".."><<-BACK</a></p>
+
 		<form action="#" method="get">
-			Nome Squadra: <input type="text" name="nome"><br><br>
-			<input type="submit" value="Aggiungi">
+			<table border="1">
+				<tr>
+					<th colspan="2"><p id="title">Formula 1 - Aggiunta squadra</p></th>
+				</tr>
+				<tr>
+					<td>Nome Squadra: </td>
+					<td><input type="text" name="nome"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Aggiungi"></td>
+				</tr>
+			</table> 
 		</form>
+		
+		<br><br><br>
 		
 		<?php 
 			$con=mysqli_connect("127.0.0.1","root","","f1");
@@ -35,11 +48,12 @@
 
 			$result = mysqli_query($con,"SELECT * FROM squadra ORDER BY cod_squadra");
 			
-			echo "<br><br><br><h4>Codice|Nome</h4>";
+			echo "<table  border='1'><tr><th>Codice</th><th>Nome</th></tr>";
 			while($row = mysqli_fetch_array($result))
 			  {
-			  echo "<br>".$row['cod_squadra']."|".$row['nome'];
+			  echo "<tr><td>".$row['cod_squadra']."</td><td>".$row['nome']."</td>";
 			  }
+			echo "</table>";
 
 			mysqli_close($con);
 		?>

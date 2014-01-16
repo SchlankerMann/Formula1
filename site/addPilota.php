@@ -20,33 +20,59 @@
 				mysqli_close($con);
 			}
 		?>
-		
-		<p id="title">Formula 1</p>
-		<form action="#" method="get">
-			Nome: <input type="text" name="nome"><br>
-			Cognome: <input type=="text" name="cognome"><br>
-			Numero: <input type=="text" name="numero"><br>
-			Squadra: <select name="squadra">
-			<?php 
-				$con=mysqli_connect("127.0.0.1","root","","f1");
-				if (mysqli_connect_errno())
-				  {
-				  echo "Connessione Fallita: " . mysqli_connect_error();
-				  }
-
-				$result = mysqli_query($con,"SELECT * FROM squadra ORDER BY cod_squadra");
 				
-				while($row = mysqli_fetch_array($result))
-				  {
-				  echo "<option value='".$row['cod_squadra']."'>".$row['nome']."</option>";
-				  }
+		<p style="float: left;"><a href=".."><<-BACK</a></p>
+		
+		<form action="#" method="get">
+			<table border="1">
+				<tr>
+					<th colspan="3"><p id="title">Formula 1 - Aggiunta pilota</p></th>
+				</tr>
+				<tr>
+					<td>Nome: </td>
+					<td colspan="2"><input type="text" name="nome"></td>
+				</tr>
+				<tr>
+					<td>Cognome: </td>
+					<td colspan="2"><input type="text" name="cognome"></td>
+				</tr>
+				<tr>
+					<td>Numero: </td>
+					<td colspan="2"><input type="text" name="numero"></td>
+				</tr>
+				<tr>
+					<td>Squadra: </td>
+					<td colspan="2">
+						<select name="squadra">
+						<?php 
+							$con=mysqli_connect("127.0.0.1","root","","f1");
+							if (mysqli_connect_errno())
+							  {
+							  echo "Connessione Fallita: " . mysqli_connect_error();
+							  }
 
-				mysqli_close($con);
-			?>
-			</select><br>
-			Foto: <input type=="text" name="path"><br><br>
-			<input type="submit" value="Aggiungi">
+							$result = mysqli_query($con,"SELECT * FROM squadra ORDER BY cod_squadra");
+							
+							while($row = mysqli_fetch_array($result))
+							  {
+							  echo "<option value='".$row['cod_squadra']."'>".$row['nome']."</option>";
+							  }
+
+							mysqli_close($con);
+						?>
+					</td>
+				</tr>
+				<tr>
+					<td>Foto: </td>
+					<td><input type="text" name="path"></td><td><input type="button" value="Carica..."></td>
+				</tr>
+				<tr>
+					<td colspan="3"><input type="submit" value="Aggiungi"></td>
+				</tr>
+			</table> 
 		</form>
+		
+		<br>
 		
 		<?php 
 			$con=mysqli_connect("127.0.0.1","root","","f1");
@@ -57,11 +83,12 @@
 
 			$result = mysqli_query($con,"SELECT pilota.cod_pilota,pilota.nome,pilota.cognome,pilota.numero,squadra.nome AS squadra,pilota.foto_path FROM pilota,squadra WHERE squadra.cod_squadra=pilota.squadra ORDER BY pilota.cod_pilota");
 			
-			echo "<br><br><br><h4>Cod_pilota|Nome|Cognome|Numero|n°Squadra|path</h4>";
+			echo "<table  border='1'><tr><th>Codice</th><th>Nome</th><th>Cognome</th><th>Numero</th><th>Squadra</th><th>Foto</th></tr>";
 			while($row = mysqli_fetch_array($result))
 			  {
-			  echo "<br>".$row['cod_pilota']."|".$row['nome']."|".$row['cognome']."|".$row['numero']."|".$row['squadra']."|".$row['foto_path'];
+			  echo "<tr><td>".$row['cod_pilota']."</td><td>".$row['nome']."</td><td>".$row['cognome']."</td><td>".$row['numero']."</td><td>".$row['squadra']."</td><td>".$row['foto_path']."</td>";
 			  }
+			echo "</table>";
 
 			mysqli_close($con);
 		?>
